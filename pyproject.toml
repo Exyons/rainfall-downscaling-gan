@@ -1,0 +1,62 @@
+[project]
+name = "rainfall-downscaling"
+version = "0.1.0"
+description = "Generative downscaling of daily rainfall from ERA5 (25 km) to CHIRPS resolution (5 km) over Uttarakhand, India"
+readme = "README.md"
+license = { file = "LICENSE" }
+# Pinned to 3.12: the project was developed on 3.12.3, and rasterio/geopandas
+# wheels lag behind the newest interpreters.
+requires-python = ">=3.12,<3.13"
+
+dependencies = [
+    # Earth Engine data acquisition (notebooks 01, 02)
+    "earthengine-api",
+    "geemap",
+
+    # Geospatial I/O and reprojection
+    "rasterio",
+    "pyproj",
+    "shapely",
+    "geopandas",
+    "contextily",
+
+    # Numerics and statistics
+    "numpy",
+    "scipy",
+    "pandas",
+    "statsmodels",
+
+    # Classical ML (notebook 06)
+    "scikit-learn",
+    "scikit-learn-intelex",
+    "scikit-image",
+
+    # Imaging
+    "opencv-python",
+    "pillow",
+
+    # Plotting
+    "matplotlib",
+    "plotly",
+
+    # Deep learning (notebooks 07, 08 and cyclegan/)
+    "torch",
+    "torchvision",
+
+    # Experiment tracking (cyclegan/ only)
+    "wandb",
+
+    # Utilities
+    "tqdm",
+    "joblib",
+    "codecarbon",
+
+    # Notebook environment
+    "jupyterlab",
+    "ipykernel",
+]
+
+[tool.uv]
+# torch pulls its CUDA runtime from the default PyPI wheels on Linux.
+# For a CPU-only or a different CUDA build, see https://docs.astral.sh/uv/guides/integration/pytorch/
+package = false
